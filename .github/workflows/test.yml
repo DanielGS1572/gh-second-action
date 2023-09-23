@@ -1,0 +1,21 @@
+name: Test Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code  #El codigo se descarga en el servidor de ubuntu
+        uses: actions/checkout@v3   #https://github.com/marketplace/actions/checkout
+        #with:       #configuraciones (depende de uses)
+      #instalación de dependencias, en el caso de ubuntu ya tiene node
+      #https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
+      #google: github runners installed software
+      #Para la instalación de node por ejemplo (en este caso no se necesita porque ya lo trae el runner) se tiene que hacer uso de un actions
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci     # se ejecuta el comando, es como npm install, pero ci usa las dependencias que estan en package-lock
+      - name: run tests
+        run: npm test
