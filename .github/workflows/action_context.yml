@@ -1,0 +1,14 @@
+#video: 49: Expressions & Context Objects
+name: Output information
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output GitHub context
+        run: echo "${{ toJSON(github) }}"
+        # Github action context es para obtener metadata proveniente de github
+        # github actions context (es el objeto de github)
+        # https://docs.github.com/en/actions/learn-github-actions/contexts
+        # github actions expressions/functions (es la sintaxis ${{ <value> }})
+        # https://docs.github.com/en/actions/learn-github-actions/expressions
