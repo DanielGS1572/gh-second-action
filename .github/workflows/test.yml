@@ -20,6 +20,8 @@ jobs:
       - name: run tests
         run: npm test
   deploy:             #cada job tiene su propio runner (que son independientes de los demás jobs)
+  #Si no se pone needs, siempre se ejecutarán en paralelo
+    needs: test       #pudiera depender de otros jobs [test, job2], y depende con la condición que haya terminado con exito
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
